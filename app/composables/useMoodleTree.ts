@@ -2,10 +2,10 @@ import type { TreeNode, YearMeta } from '~/types/moodle'
 
 const years: Record<string, YearMeta> = {
   '4CIIN': {
-    label: 'Quarto Anno',
+    label: '4CIIN',
     period: '2022 / 2023',
-    zip: '/Moodle/4CIIN_MOODLE.zip',
-    intro: 'Materiali Moodle del quarto anno: Informatica (Java), Sistemi e Reti, TDP.',
+    zip: 'https://github.com/kev1nl1u/fermi/releases/download/v1.0/MOODLE_4CIIN.zip',
+    intro: 'Materiali Moodle 4CIIN',
     tree: [
       {
         type: 'folder', name: 'Info', children: [
@@ -142,10 +142,10 @@ const years: Record<string, YearMeta> = {
   },
 
   '5CIIN': {
-    label: 'Quinto Anno',
+    label: '5CIIN',
     period: '2023 / 2024',
-    zip: 'Moodle/5CIIN_MOODLE.zip',
-    intro: 'Materiali Moodle del quinto anno: Sistemi e Reti avanzati, Android, Socket, Web Services.',
+    zip: 'https://github.com/kev1nl1u/fermi/releases/download/v1.0/MOODLE_5CIIN.zip',
+    intro: 'Materiali Moodle 5CIIN',
     tree: [
       {
         type: 'folder', name: 'Sistemi', children: [
