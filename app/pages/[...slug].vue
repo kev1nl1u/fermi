@@ -10,7 +10,7 @@ if (!page.value) {
 }
 
 useSeoMeta({
-  title: computed(() => `${page.value?.title ?? route.path} — Fermi Notes`),
+  title: computed(() => `${page.value?.title ?? route.path} — Fermi Gateway`),
 })
 </script>
 
