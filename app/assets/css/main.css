@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    scrollbar-color: #d1d5db transparent;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+
+  html.dark {
+    @apply bg-surface-900 text-slate-100;
+    scrollbar-color: #1d1d35 transparent;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-slate-700 rounded-full;
+  }
+
+  /* Global focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-surface-900;
+  }
+
+  body {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-gray-200 rounded-xl transition-all duration-200
+           dark:bg-surface-800 dark:border-slate-800;
+  }
+
+  .card-hover {
+    @apply card hover:border-gray-300 hover:shadow-sm cursor-pointer
+           dark:hover:border-slate-600 dark:hover:bg-surface-700;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg min-h-[44px]
+           bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800
+           text-white text-sm font-medium
+           transition-colors duration-150 cursor-pointer
+           focus-visible:ring-2 focus-visible:ring-indigo-500;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg min-h-[44px]
+           bg-gray-100 hover:bg-gray-200 active:bg-gray-300
+           text-gray-700 hover:text-gray-900 text-sm font-medium
+           transition-colors duration-150 border border-gray-200 cursor-pointer
+           dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300
+           dark:hover:text-white dark:border-slate-700;
+  }
+
+  .badge {
+    @apply inline-block px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest
+           text-gray-400 dark:text-slate-500;
+  }
+
+  .prose-content {
+    @apply prose prose-gray max-w-none leading-relaxed
+           prose-headings:text-gray-900 prose-headings:font-semibold
+           prose-p:text-gray-700 prose-p:leading-relaxed
+           prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
+           dark:prose-invert dark:prose-headings:text-slate-100
+           dark:prose-p:text-slate-300 dark:prose-a:text-indigo-400;
+  }
+
+  /* Row interactive — used in file browser */
+  .row-interactive {
+    @apply flex items-center gap-4 px-4 w-full min-h-[52px]
+           cursor-pointer transition-colors duration-150
+           focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500;
+  }
+
+  /* Shiki code highlight wrapper (used in FileViewer) */
+  .shiki-wrap pre.shiki {
+    @apply p-6 m-0 overflow-auto bg-transparent;
+    background: transparent !important;
+  }
+  .shiki-wrap pre.shiki code {
+    @apply block whitespace-pre;
+  }
+}

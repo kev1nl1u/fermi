@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+    <rect width="1200" height="630" fill="#F4F5F9"/>
+
+    <rect width="8" height="630" fill="#4F46E5"/>
+
+    <text x="80" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="500" fill="#1F2937">Scrivania IS Fermi</text>
+    <text x="80" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="400" fill="#4F46E5">di Kevin</text>
+    <text x="80" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="#6B7280">IS Enrico Fermi · Mantova</text>
+
+    <path fill="#4F46E5" d="
+        M 0 630 
+        L 0 580 
+        L 60 580 
+        L 60 450 
+        L 95 450 
+        L 95 580 
+        L 180 580 
+        L 180 540 
+        L 230 540 
+        L 230 510 
+        L 245 510 
+        L 250 460 
+        L 255 510 
+        L 280 510 
+        L 280 530 
+        L 320 530 
+        L 320 490 
+        L 340 490 
+        C 340 380, 450 380, 450 490 
+        L 470 490 
+        L 470 520 
+        L 510 520 
+        L 510 480 
+        L 530 480 
+        L 530 380 
+        L 540 380 
+        L 545 330 
+        L 550 380 
+        L 560 380 
+        L 560 480 
+        L 590 480 
+        L 590 530 
+        L 690 530 
+        L 730 540 
+        L 830 540 
+        L 860 490 
+        L 900 490 
+        L 910 465 
+        L 930 465 
+        L 940 490 
+        L 1010 490 
+        L 1010 530 
+        L 1050 530 
+        L 1050 500 
+        L 1130 500 
+        L 1130 520 
+        L 1190 520 
+        L 1190 560 
+        L 1200 560 
+        L 1200 630 
+        Z
+    "/>
+</svg>

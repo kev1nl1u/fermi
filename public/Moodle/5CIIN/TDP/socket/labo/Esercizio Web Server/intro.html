@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<head>
+    <title>Descrizione Esercizio Web Server</title>
+    <meta charset="utf-8">
+    
+</head>
+<body>
+<p dir="ltr">Creiamo un "mini" web-server in Java con queste limitazioni:</p><p dir="ltr">le pagine html sono memorizzate nella carella c:/mioserver del&nbsp;server (root del sito) (lato server)<br></p><p dir="ltr"><span style="font-size: 0.9375rem;">il server gestisce solo richieste HTTP di tipo "GET" e nome della pagina html</span></p><p dir="ltr">il server risponde con un messaggio in cui è incluso il codice di stato (ok oppure not found) e alcune info dell'HEADER, ovvero: Server, Date, Content-Length, Content-Type. Poi invierà il file HTML con un flusso di byte</p><p dir="ltr">il server chiude la connessione al termine di ogni richiesta HTTP (quindi NON&nbsp;<span style="font-size: 0.9375rem;">supporta la ricezione di più richieste sulla stessa connessione)</span></p><p dir="ltr">il server attende richieste sulla porta 12345</p><p dir="ltr"><br></p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<spedizione>
+	<codice>0123456789</codice>
+	<località>
+		<luogo>Pisa, aereoporto</luogo>
+		<data-ora>2022-03-7T12:00:15</data-ora>
+	</località>
+	<località>
+		<luogo>Pisa, stazione</luogo>
+		<data-ora>2022-03-7T18:00:30</data-ora>
+	</località>
+	<località>
+		<luogo>Livorno, stazione</luogo>
+		<data-ora>2022-03-7T22:15:45</data-ora>
+	</località>
+</spedizione>
+

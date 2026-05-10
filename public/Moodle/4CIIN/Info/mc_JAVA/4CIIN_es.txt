@@ -1,0 +1,200 @@
+1> 221028_rettangolo.java
+Costruire una classe rettangolo partendo da una base, un’altezza.
+Il Main deve permettere di calcolare e visualizzare l'area e il perimetro dell'oggetto istanziato.
+Istanziare (Creare) 3 oggetti:
+
+- costruttore: ne sono presenti due. Il primo crea un rettangolo con
+le dimensioni definite, il secondo, invece, permette all’utente di
+assegnare i valori
+- metodi: possono essere suddivisi in più categorie. I metodi
+contenenti la dicitura “get” (getBase, getAltezza…) restituiscono il
+valore della dimensione richiesta o eseguono un’operazione specifica
+(getArea). Quelli contenenti il prefisso “set”, invece, permettono
+di assegnare un nuovo valore alla variabile d’istanza. 
+
+2> 221103_motorino.java
+Scrivere la classe Motorino che ha i seguenti attributi
+colore: una stringa indicante il colore del motorino, 
+velocità: un numero con la virgola indicante la velocità in Km/h che possiede il motorino, 
+tipo: una stringa indicante la marca e il modello del motorino es. “Piaggio scarabeo”, 
+antifurto: un boolean che indica se è stato inserito l’antifurto (ha un valore iniziale pari a false). 
+
+Usare Dia per UML
+
+Il costruttore ha come parametri una stringa per il colore, una stringa per il tipo, un numero con la virgola per la velocità ed assegna opportunamente i valori dei parametri agli attributi. 
+
+Scrivere il metodo 
+getVelocità: che restituisce la velocità del motorino, 
+accelera: che ha come parametro un numero con la virgola indicante i Km/h che si vogliono aggiungere alla velocità, il metodo verifica il valore dell’attributo antifurto se è false aggiunge il valore del parametro all’attributo velocità, altrimenti non fa nulla.
+inserisciAntifurto: che assegna un valore true all’attributo antifurto.
+
+Istanziare 2 oggetti.
+
+3>221104_conto.java
+Dato UML conto.png creare classe e metodi che permettano di istanziare i 3 oggetti: i dati dell'esempio vanno mantenuti.
+
+4>221110_calcolatrice.java 
+workgroup
+Gestire una calcolatrice con almeno operazioni base: 
+addizione, sottrazione, moltiplicazione, divisione (ma anche elevamento a potenza ...)
+decidere bene UML con Dia 
+Dividersi in 2 gruppi:
+uno gestisce la classe attiva(main) MainCalcolatrice
+l'altro gestisce la classe Calcolatrice 
+
+5>221125_studenti.java
+Creare una classe Studente() contenente 4 campi:
+Id: codice intero progressivo (il primo studente avrà 1)
+Cognome: string
+Nome: string
+Eta: intero (random [20..50])
+
+-creare un array di DIM studenti (DIM = 10) 
+-popolare l'array (Id progressivo) (Cognome 5 lettere maiuscole AAAAA, poi BBBBB) (Nome 5 lettere minuscole aaaaa, poi bbbbb) (Eta random)
+-visualizzare l'array
+
+6>221128_garage.java
+Scrivere una classe Auto che rappresenti le seguenti informazioni relative ad un docente: marca(string), modello(string), cilindrata(int) e costo(float), e che contenga il costruttore parametrizzato ed i metodi getMarca, getModello e getCilindrata e  getCosto che restituiscono rispettivamente i campi privati.
+Usare poi una variabile boolean a piacere.
+Scrivere poi una classe Garage, che rappresenti un insieme di automobili tramite un array di tipo Auto, e che contenga il costruttore parametrizzato ed un metodo costoMinimo che restituisce il costo minimo tra le varie vetture.
+
+7>221201_arraystr.java
+Scrivere un programma ArrayStringhe che chiede all'utente di inserire una stringa.
+La stringa andrà a caricare una array di stringhe con right push la cui dimensione è la lunghezza della stringa:
+es: Marco
+Marco
+arcoM
+rcoMa
+coMar
+oMarc
+
+nel main prevedere un metodo statico per visualizzare l'array.
+
+- (più complesso) si potrebbe anche creare una classe Stringa(), una classe Stringhe() che permetta di istanziare l stringhe di lunghezza l (che contenga almeno un costruttore  e un metodo per visualizzare l'array) e una classe MainStringhe() che permetta di creare un paio di oggetti Stringhe e visualizzarle.
+
+8>221205_clock.java
+Scrivere una classe Orologio per simulare il comportamento di un orologio. La classe contiene un costruttore parametrizzato con tre argomenti (ore, min, sec) e uno di default settato a 00:00:00. Possiede inoltre un metodo public che incrementa i secondi (potrebbe far scattare i minuti), uno che incrementa i minuti (potrebbe far scattare le ore) e uno che incrementa le ore(non fa scattare nulla dopo 23 riparte 00 - non esiste un metodo per tornare indietro). Infine un metodo che stampa l'ora. 
+(NB: si ricorda che non esiste 60 per ore, min, sec ma [0..59])
+
+9>221206_Near.java
+Dato un vettore di 10 interi random[1..100] - tutti diversi fra loro(NB!!!) non ordinati - e un numero intero inserito da tastiera; scrivi un metodo statico che restituisca al programma principale, l'elemento del vettore più vicino al numero inserito , la sua posizione nel vettore e la sua distanza dal numero inserito.
+
+10>221212_Nuneri.Java
+Leggere un file numerico "numeri.txt" in java(hp: un numero per ogni riga) e caricare un vettore di dimensione pari alla qtà di numeri inseriti.
+Visualizzare l'array.
+
+Inheritance
+-----------
+
+11>230113_EreditaVeicoli.java
+Dalla classe Veicolo derivare due classi Automobile e Autobus
+aggiungere eventuali attributi e metodi se ritenuti rilevanti o necessari
+
+		Veicolo
+		=======
+		-propietario: String
+		-prezzo: int
+		-------------
+		+GetPropietario(): String
+		+GetPrezzo(): Int
+
+Automobile			Autobus
+==========             		=======
+-optional:  String		-linea:int
+-alimentazione: String
+
+11>230119_Prodotti.java
+prima
+=====
+Il gestore di un negozio associa a tutti i suoi Prodotti una descrizione sintetica del prodotto e il suo prezzo unitario. Realizzare una classe Prodotti con le opportune variabili d'istanza e i metodi get. 
+
+dopo
+====
+Il gestore del negozio vuole fare una distinzione tra i prodotti Alimentari e quelli Non Alimentari . Ai prodotti Alimentari viene associata una data di scadenza(gg/mm/aaaa) mentre a quelli Non Alimentari il materiale principale di cui sono fatti  e un metodo applicaSconto che modifica il prezzo del prodotto diminuendolo del 5%. Realizzare le sottoclassi Alimentari e NonAlimentari estendendo opportunamente la classe Prodotti.
+
+Redigere prima un grafico UML e implementare oltre alle tre classi una classe MainProdotti opportuna. 
+
+12>220202_nomeAnni.java
+classe persona con due attributi nome (stringa) e anni (intero) scrivere
+un metodo setDati dove l'utente può differentemente inserire nome anni 
+oppure anni nome in ogni caso il main scriverà prima il nome poi gli 
+anni.
+13>230202_triangoli.java
+Crea un programma per calcolare il perimetro di due tipi di triangolo: isoscele e equilatero. Le due classi Isoscele e Equilatero devono essere derivate dalla 
+Triangolo che contiene il metodo di validazione isTriangolo(..) che stabilisce se il triangolo esiste ed il metodo perimetro(..) per il calcolo del perimetro.
+Il perimetro andrà in @override.
+
+14>230206_dataEntry.java
+Creare un metodo main() per vedere il corretto funzionamento di una classe  dataEntry(). Nella classe c'è un metodo controllaDati() che ritorna un boolean se tutto è andato a buon fine. In particolare provate a passare una stringa e un intero: se riuscite, gestite tutto con Exceptions.
+Es: di se ho una classe persona: [cognome, nome, eta, reddito]
+quando viene passato l'attributo cognome a controllaDati() se ci sono caratteri che non solo alfabetici viene segnalato errore di data entry. 
+In questo caso viene richiesto il dato all'utente.
+Ovviamente il metodo dataEntry() prevederà overloading.
+
+
+15>230217_abstract 
+Si consideri una gerarchia di classi per modellare diversi tipi di animali. Si vuole creare una classe astratta Animale che definisca i metodi comuni a tutti gli animali, come mangiare e dormire. Inoltre, si vuole creare due sottoclassi, una per i mammiferi e una per i rettili.
+
+*Definire la classe astratta Animale con i metodi mangiare e dormire:
+*Definire le sottoclassi Mammifero e Rettile che estendono la classe Animale e implementano i metodi mangiare e dormire:
+*Creare un'istanza di Mammifero e una di Rettile e chiamare i loro metodi mangiare e dormire:
+
+16>230223_erditaMul.java
+Creare tre interfacce A, B, e C. La classe X implementa tutte e tre le interfacce e deve quindi fornire l'implementazione di tutti i loro metodi. Infine creare una classe EreditaMultipla che utilizza la classe X per dimostrare come funziona l'implementazione delle interfacce per simulare l'eredità multipla. 
+
+17>230225_Stack01.java
+Creare una classe Stack01.
+Importare solo le classi java.util.Random e java.util.Stack.
+Usare solo i metodi  primitivi di push(), pop(), empty().
+Caricare una pila P1 con 10 numeri interi random. 
+Visualizzare P1. 
+Svuotare P1 in una pila P2 (che sarà un reverse di P1). 
+Visualizzare P2. 
+Solo adesso, aggiungere un nuovo elemento che sarà la somma del primo(bottom) e dell'ultimo elemento(top) presenti nella pila. Visualizzare P2. 
+
+Es:
+P1 [1,2,3,4,5]
+P2 [5,4,3,2,1]
+P2 [5,4,3,2,1,6]
+
+18>230303_SommaStack.java
+Caricare una Pila da un file "numeri.txt"
+Creare una funzione che restituisca la somma della Pila.
+int somma(Stack )
+
+19>230303_PilaPariDispari.java
+Caricare una Pila da un file "numeri.txt"
+Creare una funzione che carichi PilaPari ePiladispri relativamente con i numeri pari e dispari.
+void pariDispari(Stack, Stack, Stack)
+
+20>230311_PilaSort.java
+Dato il file numeri.txt (su Moodle) e uno Stack istanziare un obj Pila1 che legga un numero e lo inserisca correttamente col metodo di inserction sort.
+visualizzare la Pila1.
+es: 3 5 67 41 12 8
+[3, 5, 8, 12, 41, 67]
+
+21>230414_B-tree.java
+Scrivere un algoritmo ricorsivo che permetta di inserire in un B-tree a sx il numero minore e a destra il maggiore. Implementare l'algoritmo in Java, come metodo statico all'interno del main, dove gli alberi siano implementati come istanze della classe.
+Trovare un modo per visualizzare l'albero.
+• le operazioni da implementare sono definite a livello di albero B-tree:
+– find(Object), insert(Object), delete(Object) // primitiva
+- print(Object) // non primitiva
+
+22>230415_B-tree.java
+Scrivere un algoritmo ricorsivo che permetta di inserire in un B-tree a sx il numero minore e a destra il maggiore. Implementare l'algoritmo in Java, come metodo statico all'interno del main, dove gli alberi siano implementati come istanze della classe.
+Visualizzare la sequenza numerica delle tre visite:
+– pre-ordine  (anticipata)  Root-L-R
+– post-ordine (posticipata) L-R-Root
+– in-ordine   (simmetrica)  L-Root-R
+
+23>230417_VisitaSimmetrica.java
+dato 2 file "numeri1.txt": 104, 32, 44, 121, 200 152, 23
+            "numeri2.txt": 32, 44, 104, 152, 121, 23, 200 
+			
+dimostrare che una visita simmetrica nei 2 due file produrrà la stessa sequenza ordinata
+
+23>230417_SottoAlbero.java
+Dato un B-tree produrre un sottoalbero senza le foglie.
+
+24>230508_MaxLeftRight.java
+Dato un B-tree dire se è maggiore la somma della foglie del sottoalbero di sx rispetto a dx (rispetto alla root)

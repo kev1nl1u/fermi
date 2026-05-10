@@ -1,0 +1,5 @@
+classi attributi metodi non vanno modificati
+attributi del padre sono private o protected
+fare sempre costruttore parametrizzato (istanziare un obj contestuale)
+classe ereditata @override usare metodo del padre con lostesso nome
+attributi del figlio sono = padre nel costruttore parametrizzato super(a,b,c)
