@@ -15,8 +15,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           command_timeout: 30m
           script: |
+            export NODE_PATH=/home/ubuntu/.nvm/versions/node/v22.15.0/bin
+            export PATH=$NODE_PATH:$PATH
+            
             cd /home/ubuntu/web/fermi
             git pull origin master
-            /home/ubuntu/.nvm/versions/node/v22.15.0/bin/npm install
-            /home/ubuntu/.nvm/versions/node/v22.15.0/bin/npm run build
-            PORT=3002 /home/ubuntu/.nvm/versions/node/v22.15.0/bin/pm2 restart fermi-gateway --update-env
+            npm install
+            npm run build
+            PORT=3002 pm2 restart fermi-gateway --update-env
