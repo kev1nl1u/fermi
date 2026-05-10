@@ -5,7 +5,9 @@ const props = defineProps<{
   year: string
   pathSegments: string[]
   children: TreeNode[]
-  zip?: string
+  zip?: string | null
+  baseDir?: string
+  baseRoute?: string
 }>()
 
 const folders = computed(() =>
@@ -15,26 +17,29 @@ const files = computed(() =>
   props.children.filter(n => n.type === 'file').sort((a, b) => a.name.localeCompare(b.name))
 )
 
+const route = computed(() => props.baseRoute ?? '/appunti')
+const dir = computed(() => props.baseDir ?? 'Moodle')
+
 function folderHref(name: string) {
   const segs = [props.year, ...props.pathSegments, name]
-  return '/appunti/' + segs.map(encodeURIComponent).join('/')
+  return route.value + '/' + segs.map(encodeURIComponent).join('/')
 }
 
 function fileHref(name: string) {
   const segs = [props.year, ...props.pathSegments, name]
-  return '/Moodle/' + segs.map(encodeURIComponent).join('/')
+  return '/' + dir.value + '/' + segs.map(encodeURIComponent).join('/')
 }
 
 // Breadcrumb
 const breadcrumbs = computed(() => {
   const crumbs = [
-    { label: props.year, href: `/appunti/${encodeURIComponent(props.year)}` },
+    { label: props.year, href: `${route.value}/${encodeURIComponent(props.year)}` },
   ]
   props.pathSegments.forEach((seg, i) => {
     const segs = props.pathSegments.slice(0, i + 1)
     crumbs.push({
       label: seg,
-      href: `/appunti/${encodeURIComponent(props.year)}/${segs.map(encodeURIComponent).join('/')}`,
+      href: `${route.value}/${encodeURIComponent(props.year)}/${segs.map(encodeURIComponent).join('/')}`,
     })
   })
   return crumbs
@@ -42,8 +47,8 @@ const breadcrumbs = computed(() => {
 
 const backHref = computed(() => {
   if (props.pathSegments.length === 0) return '/'
-  if (props.pathSegments.length === 1) return `/appunti/${encodeURIComponent(props.year)}`
-  return `/appunti/${encodeURIComponent(props.year)}/${props.pathSegments.slice(0, -1).map(encodeURIComponent).join('/')}`
+  if (props.pathSegments.length === 1) return `${route.value}/${encodeURIComponent(props.year)}`
+  return `${route.value}/${encodeURIComponent(props.year)}/${props.pathSegments.slice(0, -1).map(encodeURIComponent).join('/')}`
 })
 
 // File icon colour by extension

@@ -8,7 +8,7 @@ export interface TreeNode {
 export interface YearMeta {
   label: string
   period: string
-  zip: string
+  zip?: string | null
   intro: string
   tree: TreeNode[]
 }

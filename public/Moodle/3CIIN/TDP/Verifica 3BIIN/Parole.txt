@@ -1,0 +1,8 @@
+La risoluzione dello schermo deve essere tale da garantire una buona definizione
+una forma chiara e una grandezza sufficiente dei caratteri
+inoltre uno spazio adeguato tra essi 
+Le immagini sullo schermo devono essere stabili ed esenti da sfarfallamento o tremolio
+La brillanza e il contrasto di luminanza tra i caratteri e lo sfondo dello schermo devono essere facilmente regolabili
+e facilmente adattabili alle condizioni ambientali
+Lo schermo deve essere orientabile e inclinabile liberamente per adeguarsi facilmente alle esigenze dell’utilizzatore.
+Sullo schermo non devono essere presenti riflessi e riverberi che possano causare disturbi a chi lo utilizza

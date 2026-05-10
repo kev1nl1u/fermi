@@ -1,0 +1,5 @@
+La tastiera deve essere separata dallo schermo e facilmente regolabile
+Deve essere dotata di meccanismo di variazione della pendenza onde consentire al lavoratore 
+di assumere una posizione confortevole e tale da non provocare un affaticamento delle braccia e delle mani
+Lo spazio sul piano di lavoro deve consentire un appoggio degli avambracci davanti alla tastiera nel corso della digitazione
+tenendo conto delle caratteristiche antropometriche di un operatore

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>prova</title>
+	<style>
+		polygon {
+  fill: yellow;
+  stroke: blue;
+  stroke-width: 10;
+}
+	</style>
+</head>
+<body>
+	<script>
+		function makePolygon(posX, posY, numSides, size)
+{
+  var points = [];
+  for (var i = 0; i < numSides; i++) {
+    points.push(posX + size * Math.sin(2 * Math.PI * i / numSides));
+    points.push(posY + size * Math.cos(2 * Math.PI * i / numSides));
+  }
+
+	// Create a polygon element
+	var poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+	poly.setAttribute("points", points.join(','));
+	
+	// Add it to the SVG
+	document.getElementById("mysvg").appendChild(poly);
+	}
+	</script>
+	<button onclick="makePolygon(250,250, 6, 200)">CIAO</button>
+	<svg id="mysvg" width="500" height="500"></svg>
+	
+</body>
+</html>

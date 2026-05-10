@@ -21,7 +21,8 @@ const fileColor: Record<string, string> = {
 
 const { open: openViewer } = useFileViewer()
 const { getMeta } = useMoodleTree()
-const years = ['4CIIN', '5CIIN']
+const { getMeta: getAppuntiMeta, years: appuntiYears } = useAppuntiTree()
+const years = ['3CIIN', '4CIIN', '5CIIN']
 
 const projectGroups = [
   {
@@ -111,17 +112,25 @@ const statusClass: Record<string, string> = {
         <span class="flex-1 h-px bg-gray-200 dark:bg-slate-800" />
       </div>
 
-      <div class="card overflow-hidden opacity-50 cursor-not-allowed select-none" aria-disabled="true">
-        <div class="flex items-center gap-4 px-4 min-h-[52px]">
-          <!-- Folder icon (muted) -->
-          <svg class="w-5 h-5 shrink-0 text-gray-300 dark:text-slate-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <div class="card overflow-hidden divide-y divide-gray-100 dark:divide-slate-800">
+        <NuxtLink
+          v-for="year in appuntiYears"
+          :key="year"
+          :to="`/note/${year}`"
+          class="flex items-center gap-4 px-4 min-h-[52px]
+                 hover:bg-gray-50 dark:hover:bg-slate-800/60
+                 transition-colors group cursor-pointer"
+        >
+          <!-- Folder icon -->
+          <svg class="w-5 h-5 shrink-0 text-amber-400 dark:text-amber-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 12h-15a4.483 4.483 0 00-3 1.146z" />
           </svg>
-          <span class="font-mono text-sm text-gray-400 dark:text-slate-600">note personali</span>
-          <span class="ml-auto font-mono text-[10px] text-gray-400 dark:text-slate-600 border border-dashed border-gray-300 dark:border-slate-700 px-2 py-0.5 rounded">
-            work in progress
-          </span>
-        </div>
+          <span class="font-mono font-semibold text-sm text-indigo-600 dark:text-indigo-400 shrink-0">{{ year }}</span>
+          <span class="text-xs text-gray-500 dark:text-slate-400 font-mono">{{ getAppuntiMeta(year)?.period }}</span>
+          <svg class="w-4 h-4 text-gray-400 dark:text-slate-500 group-hover:text-indigo-400 ml-auto shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </NuxtLink>
       </div>
     </section>
 

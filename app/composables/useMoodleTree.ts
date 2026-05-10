@@ -1,6 +1,75 @@
 import type { TreeNode, YearMeta } from '~/types/moodle'
 
 const years: Record<string, YearMeta> = {
+  '3CIIN': {
+    label: '3CIIN',
+    period: '2021 / 2022',
+    zip: null,
+    intro: 'Materiali Moodle 3CIIN',
+    tree: [
+      {
+        type: 'folder', name: 'Sistemi', children: [
+          { type: 'file', name: '01 Linux introduzione e directory.pdf', ext: 'pdf' },
+          { type: 'file', name: '02 Linux utenti, permessi, comandi.pdf', ext: 'pdf' },
+          { type: 'file', name: '03 Linux - metacaratteri e chmod.pdf', ext: 'pdf' },
+          { type: 'file', name: '04 Linux chmod e input output.pdf', ext: 'pdf' },
+          { type: 'file', name: '4 Fantastici Progetti.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Aritmetica dei calcolatori.pdf', ext: 'pdf' },
+          {
+            type: 'folder', name: 'Assembly', children: [
+              { type: 'file', name: 'ASSEMBLY 3CIIN.pdf', ext: 'pdf' },
+              { type: 'file', name: 'Istruzioni principali.pdf', ext: 'pdf' },
+            ],
+          },
+          { type: 'file', name: 'Basi della Comunicazione v3.0.pdf', ext: 'pdf' },
+          { type: 'file', name: 'CPU.pdf', ext: 'pdf' },
+          { type: 'file', name: 'git v1.docx', ext: 'docx' },
+          { type: 'file', name: 'Introduzione.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Linguaggio Macchina.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Logica Sequenziale.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Manuale CPU08.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Mappa trasformazione istruzioni.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Operazioni bit a bit.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Progettare Hardware.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Riduzione stati.pdf', ext: 'pdf' },
+          { type: 'file', name: 'scheme.jpg', ext: 'jpg' },
+          { type: 'file', name: 'Simulazione verifica #1.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Simulazione verifica #2.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Simulazione verifica.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Simulazione verifica teoria.pdf', ext: 'pdf' },
+          { type: 'file', name: 'soluzione esercizio alu.jpg', ext: 'jpg' },
+          { type: 'file', name: 'Soluzioni esercizio 1304 calcolo parità e simulazione trasmissione (Kevin).zip', ext: 'zip' },
+          { type: 'file', name: 'Teoria CPU.pdf', ext: 'pdf' },
+        ],
+      },
+      {
+        type: 'folder', name: 'TDP', children: [
+          { type: 'file', name: 'Array - Array + Funzioni v22.pdf', ext: 'pdf' },
+          { type: 'file', name: 'LE STRINGHE 3CIIN.pdf', ext: 'pdf' },
+          { type: 'file', name: 'Progetti.docx', ext: 'docx' },
+          {
+            type: 'folder', name: 'SVG', children: [
+              { type: 'file', name: 'Presentazione.pdf', ext: 'pdf' },
+              { type: 'file', name: 'video.mp4', ext: 'mp4' },
+            ],
+          },
+          { type: 'file', name: 'TDP_3_rappresentazioni_informazioni.pptx.pdf', ext: 'pdf' },
+          { type: 'file', name: 'temp_CAM050_-_Codifica_delle_informazioni.pdf', ext: 'pdf' },
+          {
+            type: 'folder', name: 'Verifica 3BIIN', children: [
+              { type: 'file', name: 'Caratteri.txt', ext: 'txt' },
+              { type: 'file', name: 'I file in C.pdf', ext: 'pdf' },
+              { type: 'file', name: 'Parole.txt', ext: 'txt' },
+              { type: 'file', name: 'Presenze.dat', ext: 'dat' },
+              { type: 'file', name: 'Presenze.txt', ext: 'txt' },
+              { type: 'file', name: 'Verifica 3biin TDP maggio 2022.pdf', ext: 'pdf' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
   '4CIIN': {
     label: '4CIIN',
     period: '2022 / 2023',
