@@ -29,20 +29,20 @@ const projectGroups = [
     id: 'fermi-notify',
     name: 'Fermi Notify',
     projects: [
-      { name: 'ferminotify.lkev.in', url: 'https://ferminotify.lkev.in', github: null, status: 'attivo' },
-      { name: 'node.fn.lkev.in', url: 'https://node.fn.lkev.in', github: null, status: 'legacy' },
-      { name: 'old.fn.lkev.in', url: 'https://old.fn.lkev.in', github: null, status: 'legacy' },
+      { name: 'ferminotify.lkev.in', url: 'https://ferminotify.lkev.in', github: 'https://github.com/ferminotify/', status: 'attivo' },
+      { name: 'node.fn.lkev.in', url: 'https://node.fn.lkev.in', github: 'https://github.com/ferminotify/', status: 'legacy' },
+      { name: 'old.fn.lkev.in', url: 'https://old.fn.lkev.in', github: 'https://github.com/ferminotify/', status: 'legacy' },
     ],
   },
   {
     id: 'scolastici',
     name: 'Progetti scolastici',
     projects: [
-      { name: 'storia22.fermi.lkev.in', url: 'https://storia22.fermi.lkev.in', github: null, status: 'live' },
-      { name: 'ferari.fermi.lkev.in', url: 'https://ferari.fermi.lkev.in', github: null, status: 'live' },
-      { name: 'oradiscienza.fermi.lkev.in', url: 'https://oradiscienza.fermi.lkev.in', github: null, status: 'live' },
-      { name: 'stackheap.fermi.lkev.in', url: 'https://stackheap.fermi.lkev.in', github: null, status: 'live' },
-      { name: 'tcpip.fermi.lkev.in', url: 'https://tcpip.fermi.lkev.in', github: null, status: 'live' },
+      { name: 'storia22.fermi.lkev.in', url: 'https://storia22.fermi.lkev.in', github: 'https://github.com/kev1nl1u/storia22', status: 'live' },
+      { name: 'ferari.fermi.lkev.in', url: 'https://ferari.fermi.lkev.in', github: 'https://github.com/kev1nl1u/ferari', status: 'live' },
+      { name: 'oradiscienza.fermi.lkev.in', url: 'https://oradiscienza.fermi.lkev.in', github: 'https://github.com/kev1nl1u/2223-progetti-mate', status: 'live' },
+      { name: 'stackheap.fermi.lkev.in', url: 'https://stackheap.fermi.lkev.in', github: 'https://github.com/kev1nl1u/stackheap', status: 'live' },
+      { name: 'tcpip.fermi.lkev.in', url: 'https://tcpip.fermi.lkev.in', github: 'https://github.com/kev1nl1u/2223-sistemi-tcpip', status: 'live' },
     ],
   },
 ]

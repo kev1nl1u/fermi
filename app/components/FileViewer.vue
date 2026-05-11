@@ -9,6 +9,7 @@ const emit = defineEmits<{ close: [] }>()
 
 const isPdf   = computed(() => props.ext === 'pdf')
 const isImage = computed(() => ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(props.ext))
+const isDocx  = computed(() => props.ext === 'docx')
 const isText  = computed(() => ['txt', 'java', 'js', 'ts', 'html', 'css', 'md', 'xml', 'json'].includes(props.ext))
 
 const isMobile = ref(false)
@@ -20,6 +21,10 @@ const textContent = ref('')
 const highlightedHtml = ref('')
 const textLoading = ref(false)
 const textError   = ref(false)
+
+const docxContainer = ref<HTMLElement | null>(null)
+const docxLoading = ref(false)
+const docxError = ref(false)
 
 const langMap: Record<string, string> = {
   java: 'java', js: 'javascript', ts: 'typescript',
@@ -35,7 +40,7 @@ async function highlight(code: string, ext: string) {
     const { codeToHtml } = await import('shiki')
     return await codeToHtml(code, {
       lang: langMap[ext] ?? 'text',
-      themes: { light: 'github-light', dark: 'github-dark' },
+      themes: { light: 'github-dark', dark: 'github-dark' },
     })
   } catch {
     return ''
@@ -60,6 +65,43 @@ watch(() => props.url, async () => {
     textError.value = true
   } finally {
     textLoading.value = false
+  }
+}, { immediate: true })
+
+watch([() => props.url, () => props.ext, docxContainer], async () => {
+  if (!isDocx.value) {
+    docxLoading.value = false
+    docxError.value = false
+    if (docxContainer.value) {
+      docxContainer.value.innerHTML = ''
+    }
+    return
+  }
+
+  if (!docxContainer.value) return
+
+  docxLoading.value = true
+  docxError.value = false
+  docxContainer.value.innerHTML = ''
+
+  try {
+    const res = await fetch(props.url)
+    if (!res.ok) throw new Error('Failed to load docx')
+
+    const buffer = await res.arrayBuffer()
+    const { renderAsync } = await import('docx-preview')
+
+    await renderAsync(buffer, docxContainer.value, undefined, {
+      className: 'docx',
+      breakPages: true,
+      ignoreLastRenderedPageBreak: false,
+      renderHeaders: true,
+      renderFooters: true,
+    })
+  } catch {
+    docxError.value = true
+  } finally {
+    docxLoading.value = false
   }
 }, { immediate: true })
 
@@ -178,6 +220,29 @@ onMounted(() => {
             :alt="name"
             class="max-w-full max-h-full object-contain rounded"
           />
+        </div>
+
+        <!-- DOCX -->
+        <div
+          v-else-if="isDocx"
+          class="absolute inset-0 overflow-auto bg-stone-100 p-4 md:p-6"
+        >
+          <div
+            ref="docxContainer"
+            class="mx-auto max-w-5xl"
+          />
+          <div
+            v-if="docxLoading"
+            class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm font-mono pointer-events-none"
+          >
+            Caricamento documento...
+          </div>
+          <div
+            v-else-if="docxError"
+            class="absolute inset-0 flex items-center justify-center text-red-400 text-sm font-mono pointer-events-none"
+          >
+            Impossibile caricare il documento.
+          </div>
         </div>
 
         <!-- Text / Code -->

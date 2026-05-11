@@ -6,7 +6,7 @@ interface ViewerFile {
 
 const OVERLAY_EXTS = new Set([
   'pdf', 'png', 'jpg', 'jpeg', 'gif', 'webp', 'svg',
-  'txt', 'java', 'js', 'ts', 'html', 'css', 'md', 'xml', 'json',
+  'txt', 'java', 'js', 'ts', 'html', 'css', 'md', 'xml', 'json', 'docx',
 ])
 
 export function useFileViewer() {
