@@ -9,8 +9,58 @@ useSeoMeta({
   twitterDescription: 'Appunti e progetti IS E. Fermi di Kevin.',
 })
 
-const openSearch = inject<() => void>('openSearch', () => {})
-const { recents, clear: clearRecents } = useRecent()
+import type { SearchResult } from '~/composables/useSearch'
+
+const { recents, clear: clearRecents, add: addRecent } = useRecent()
+const { search } = useSearch()
+const router = useRouter()
+
+const query = ref('')
+const searchInput = ref<HTMLInputElement | null>(null)
+const selectedIndex = ref(0)
+const results = computed<SearchResult[]>(() => search(query.value))
+
+watch(results, () => { selectedIndex.value = 0 })
+
+// "/" focuses the search bar
+function onGlobalKeydown(e: KeyboardEvent) {
+  const target = e.target as HTMLElement
+  if (target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA') return
+  if (e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key === 'k')) {
+    e.preventDefault()
+    searchInput.value?.focus()
+  }
+}
+onMounted(() => document.addEventListener('keydown', onGlobalKeydown))
+onUnmounted(() => document.removeEventListener('keydown', onGlobalKeydown))
+
+function selectResult(r: SearchResult) {
+  addRecent({ type: r.type, name: r.name, href: r.href, year: r.year, ext: r.ext })
+  if (r.type === 'folder') router.push(r.href)
+  else openViewer(r.href, r.name, r.ext ?? '')
+  query.value = ''
+  searchInput.value?.blur()
+}
+
+function onSearchKeydown(e: KeyboardEvent) {
+  if (!results.value.length) {
+    if (e.key === 'Escape') { query.value = ''; searchInput.value?.blur() }
+    return
+  }
+  if (e.key === 'Escape') { query.value = ''; searchInput.value?.blur(); e.preventDefault() }
+  else if (e.key === 'ArrowDown') {
+    selectedIndex.value = Math.min(selectedIndex.value + 1, results.value.length - 1)
+    e.preventDefault()
+  }
+  else if (e.key === 'ArrowUp') {
+    selectedIndex.value = Math.max(selectedIndex.value - 1, 0)
+    e.preventDefault()
+  }
+  else if (e.key === 'Enter') {
+    const r = results.value[selectedIndex.value]
+    if (r) { selectResult(r); e.preventDefault() }
+  }
+}
 
 const fileColor: Record<string, string> = {
   pdf: 'text-red-500', java: 'text-orange-500',
@@ -58,23 +108,81 @@ const statusClass: Record<string, string> = {
   <div class="bg-gray-50 dark:bg-surface-900 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-10">
 
-    <!-- ── Search button ── -->
-    <button
-      class="w-full flex items-center gap-3 px-4 h-11 rounded-xl
-             bg-white dark:bg-surface-800
-             border border-gray-200 dark:border-slate-700
-             hover:border-gray-300 dark:hover:border-slate-600
-             text-left transition-colors group"
-      @click="openSearch()"
-    >
-      <svg class="w-4 h-4 shrink-0 text-gray-500 dark:text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-      </svg>
-      <span class="flex-1 font-mono text-sm text-gray-500 dark:text-slate-400 group-hover:text-gray-600 dark:group-hover:text-slate-300 transition-colors">
-        Cerca tra cartelle e file...
-      </span>
-      <kbd class="font-mono text-[10px] text-gray-500 dark:text-slate-400 border border-gray-200 dark:border-slate-600 rounded px-1.5 py-0.5 select-none">/</kbd>
-    </button>
+    <!-- ── Search bar ── -->
+    <div class="relative">
+      <div
+        class="w-full flex items-center gap-3 px-4 h-11 rounded-xl
+               bg-white dark:bg-surface-800
+               border border-gray-200 dark:border-slate-700
+               focus-within:border-gray-300 dark:focus-within:border-slate-600
+               transition-colors"
+      >
+        <svg class="w-4 h-4 shrink-0 text-gray-500 dark:text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+        <input
+          ref="searchInput"
+          v-model="query"
+          type="text"
+          placeholder="Cerca tra cartelle e file..."
+          class="flex-1 min-w-0 bg-transparent outline-none focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-sm text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400"
+          autocomplete="off"
+          spellcheck="false"
+          @keydown="onSearchKeydown"
+        />
+        <button
+          v-if="query"
+          class="shrink-0 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+          aria-label="Pulisci"
+          @click="query = ''"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <kbd v-else class="font-mono text-[10px] text-gray-500 dark:text-slate-400 border border-gray-200 dark:border-slate-600 rounded px-1.5 py-0.5 select-none">/</kbd>
+      </div>
+
+      <!-- Results dropdown -->
+      <div
+        v-if="query"
+        class="absolute z-40 mt-2 w-full bg-white dark:bg-surface-800 rounded-xl border border-gray-200 dark:border-slate-700 shadow-xl shadow-black/10 overflow-hidden"
+      >
+        <div v-if="!results.length" class="px-4 py-6 text-center text-xs font-mono text-gray-500 dark:text-slate-400">
+          Nessun risultato per "{{ query }}"
+        </div>
+        <div v-else class="max-h-[60vh] overflow-y-auto">
+          <button
+            v-for="(r, i) in results"
+            :key="r.href"
+            class="w-full flex items-center gap-3 px-4 min-h-[44px] text-left transition-colors"
+            :class="i === selectedIndex
+              ? 'bg-indigo-50 dark:bg-indigo-500/10'
+              : 'hover:bg-gray-50 dark:hover:bg-slate-700/50'"
+            @click="selectResult(r)"
+            @mouseenter="selectedIndex = i"
+          >
+            <svg v-if="r.type === 'folder'" class="w-4 h-4 shrink-0 text-amber-400 dark:text-amber-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 12h-15a4.483 4.483 0 00-3 1.146z" />
+            </svg>
+            <svg v-else class="w-4 h-4 shrink-0" :class="fileColor[r.ext ?? ''] ?? 'text-gray-400'" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+
+            <div class="flex-1 min-w-0">
+              <div class="text-sm text-gray-800 dark:text-slate-200 truncate">{{ r.name }}</div>
+              <div class="text-[11px] font-mono text-gray-400 dark:text-slate-500 truncate">
+                {{ r.year }}{{ r.parentPath.length ? ' / ' + r.parentPath.join(' / ') : '' }}
+              </div>
+            </div>
+
+            <span class="text-[10px] font-mono uppercase text-gray-500 dark:text-slate-400 shrink-0">
+              {{ r.type === 'folder' ? 'cartella' : r.ext }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- ── Appunti Moodle ── -->
     <section>
